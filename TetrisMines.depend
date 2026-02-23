@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1771593899 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrismines\main.c
+	"raylib.h"
+
+1771594995 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrismines\escenario.c
+	"escenario.h"
+
+1771594591 c:\users\jaime\onedrive\documentos\escola\programación\tetrismines\escenario.h
+	"raylib.h"
+
