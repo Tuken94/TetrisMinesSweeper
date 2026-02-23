@@ -35,6 +35,10 @@ int  GetTableroX();
 
 int  GetTableroY();
 
+bool EsCeldaLibre(int x, int y); // x=columna, y=fila
+
+void BloquearCelda(int x, int y, Color color);
+
 //void Unlodear();
 
 

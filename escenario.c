@@ -73,6 +73,17 @@ int GetTableroY(){
     return tableroY;
 }
 
+// Devuelve true si (x,y) est  dentro del tablero y la celda est  vac¡a
+bool EsCeldaLibre(int x, int y){
+    if (x < 0 || x >= COLUMNAS || y < 0 || y >= FILAS) return false;
+    return tablero[y][x].estado == CELDA_VACIA;
+}
+
+// Marca una celda como bloqueada con el color de la pieza
+void BloquearCelda(int x, int y, Color color){
+    tablero[y][x].estado = CELDA_BLOQUEADA;
+    tablero[y][x].color  = color;
+}
 
 /*void Unlodear(){
     UnloadTexture(fondo);

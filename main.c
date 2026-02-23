@@ -18,6 +18,7 @@
 #include "raylib.h"
 #include "escenario.h"
 #include "pieza.h"
+#include "tetris.h"
 
 //------------------------------------------------------------------------------------------
 // Types and Structures Definition
@@ -84,7 +85,7 @@ int main(void)
             {
                 // TODO: Update GAMEPLAY screen variables here!
                 // Press enter to change to ENDING screen
-                ActualizarPieza(&pieza);
+                ActualizarJuego(&pieza);
                 if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
                 {
                     currentScreen = ENDING;

@@ -124,9 +124,21 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="escenario.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="escenario.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pieza.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pieza.h" />
+		<Unit filename="tetris.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tetris.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

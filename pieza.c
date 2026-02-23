@@ -31,14 +31,7 @@ void InitPieza(Pieza* p){
     p->posY  = 0;
 }
 
-void ActualizarPieza(Pieza* p){
-    if(IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_A)) MoverPieza(p, -1,0);
-    if(IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D)) MoverPieza(p, 1,0);
-    if(IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_S)) MoverPieza(p, 0,1);
-    if(IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W)) MoverPieza(p, 0,-1);
-    if(IsKeyPressed(KEY_Q)) RotarPieza(p);
-    if(IsKeyPressed(KEY_Z)) InitPieza(p);
-}
+
 
 void MoverPieza(Pieza* p, int dx, int dy){ //la hago por separado a Actualizar para luego calcular la colision mas facil
     p->posX += dx;
