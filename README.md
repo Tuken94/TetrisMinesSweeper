@@ -102,7 +102,7 @@ TetrisMinesSweeper/
 Este proyecto está bajo la licencia **MIT**. Puedes usarlo, modificarlo y distribuirlo libremente siempre que mantengas el aviso de copyright original.
 
 ```
-MIT License — Copyright (c) 2025
+MIT License — Copyright (c) 2026
 ```
 
 ---
