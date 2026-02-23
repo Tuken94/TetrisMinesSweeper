@@ -2,18 +2,40 @@
 #define ESCENARIO_H_INCLUDED
 
 #include "raylib.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#define TERRENO_ALTO 10
-#define TERRENO_ANCHO 15
+#define COLUMNAS 10
+#define FILAS 20
+#define CELDA_SIZE 40
+
+typedef enum {
+    CELDA_VACIA=0,
+    CELDA_BLOQUEADA,
+    MINA,
+    CELDA_NUMERO
+} EstadoCelda;
 
 typedef struct {
-    Texture2D fondo;
-    Texture2D borde;
-    Texture2D patron;
-} Interfaz;
+    EstadoCelda estado;
+    bool        tiene_mina;
+    int         minas_adyacentes;
+    Color       color;          // color de la pieza que la ocup¢
+} Celda;
 
-void DibujarInterface();
+//funciones
+//void LoadearTexturas();
 
-void Unlodear();
+void InitTablero();
+
+void DibujarTablero();
+
+int  GetTableroX();
+
+int  GetTableroY();
+
+//void Unlodear();
+
 
 #endif // ESCENARIO_H_INCLUDED

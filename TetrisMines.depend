@@ -8,3 +8,26 @@
 1771594591 c:\users\jaime\onedrive\documentos\escola\programación\tetrismines\escenario.h
 	"raylib.h"
 
+1771849406 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\escenario.c
+	"escenario.h"
+	<stdio.h>
+
+1771850986 c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\escenario.h
+	"raylib.h"
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
+
+1771850987 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\main.c
+	"raylib.h"
+	"escenario.h"
+	"pieza.h"
+
+1771851008 c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\pieza.h
+	"raylib.h"
+	"escenario.h"
+	<time.h>
+
+1771850930 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\pieza.c
+	"pieza.h"
+

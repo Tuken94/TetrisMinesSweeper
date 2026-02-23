@@ -17,6 +17,7 @@
 
 #include "raylib.h"
 #include "escenario.h"
+#include "pieza.h"
 
 //------------------------------------------------------------------------------------------
 // Types and Structures Definition
@@ -32,9 +33,14 @@ int main(void)
     //--------------------------------------------------------------------------------------
     const int screenWidth = 1920;
     const int screenHeight = 1080;
+    srand(time(NULL));
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
+    InitWindow(screenWidth, screenHeight, "TetrisMinesSweeper");
     ToggleFullscreen();
+    //LoadearTexturas();
+    InitTablero();
+    Pieza pieza;
+    InitPieza(&pieza); // empieza con la I, luego ser  aleatoria
 
     GameScreen currentScreen = LOGO;
 
@@ -78,6 +84,7 @@ int main(void)
             {
                 // TODO: Update GAMEPLAY screen variables here!
                 // Press enter to change to ENDING screen
+                ActualizarPieza(&pieza);
                 if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
                 {
                     currentScreen = ENDING;
@@ -124,7 +131,8 @@ int main(void)
                 {
                     // TODO: Draw GAMEPLAY screen here!
                     //DrawTexture(fondo, GetScreenWidth()/2 - fondo.width/2, GetScreenHeight()/2 - fondo.width/2, WHITE);
-                    DibujarInterface();
+                    DibujarTablero();
+                    DibujarPieza(&pieza);
 
                 } break;
                 case ENDING:
@@ -146,10 +154,7 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     // TODO: Unload all loaded data (textures, fonts, audio) here!
-    //UnloadTexture(fondo);
-    //UnloadTexture(borde);
-    //UnloadTexture(patron);
-
+    //Unlodear();
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
