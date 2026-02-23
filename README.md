@@ -1,65 +1,67 @@
 # TetrisMinesSweeper
 
-> Un híbrido entre Tetris y Buscaminas.
+> A hybrid between Tetris and Minesweeper.
 
-![Estado](https://img.shields.io/badge/estado-WIP%20%2F%20prototipo-orange)
-![Lenguaje](https://img.shields.io/badge/lenguaje-C-blue)
-![Plataforma](https://img.shields.io/badge/plataforma-Windows%20%7C%20Linux-lightgrey)
-![Licencia](https://img.shields.io/badge/licencia-MIT-green)
+[Español](README.es.md) | **English** | [Português](README.pt.md)
 
-TetrisMinesSweeper es un juego de PC que fusiona dos clásicos:
+![Status](https://img.shields.io/badge/status-WIP%20%2F%20prototype-orange)
+![Language](https://img.shields.io/badge/language-C-blue)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-- **Tetris**: las piezas de siempre caen desde arriba. Las mueves, las rotas, intentas colocarlas bien.
-- **Buscaminas**: cada pieza trae ocultas una o varias minas. Al aterrizar, sus celdas pasan a formar parte del tablero como casillas de buscaminas, mostrando los números de minas adyacentes a su alrededor.
+TetrisMinesSweeper is a PC game that fuses two classics:
 
-La clave del juego es que **una línea no se elimina simplemente llenándola**. Primero hay que desbloquear todas las casillas blancas de esa fila, es decir, las que no contienen mina. Explotar una mina o no gestionar bien el tablero te penaliza. La puntuación combina la velocidad y eficiencia del Tetris con la precisión del Buscaminas.
+- **Tetris**: the same pieces as always fall from above. You move them, rotate them, and try to place them well.
+- **Minesweeper**: each piece carries one or more hidden mines. When it lands, its cells become part of the board as minesweeper tiles, showing the number of adjacent mines around them.
+
+The key mechanic is that **a line is not cleared just by filling it**. You must first unlock all the white cells in that row — the ones that don't contain a mine. Detonating a mine or mismanaging the board will penalize you. The score combines the speed and efficiency of Tetris with the precision of Minesweeper.
 
 ---
 
-## Estado del proyecto
+## Project Status
 
-**Prototipo en desarrollo.** Lo que está implementado actualmente:
+**Prototype under development.** Currently implemented:
 
-- [x] Tablero 10×20 centrado en pantalla
-- [x] Las 7 piezas estándar del Tetris con sus colores
-- [x] Movimiento y rotación de piezas
-- [x] Estructura de celdas con campos de mina y número de adyacentes
-- [x] Pantallas básicas: Logo → Título → Juego → Final
+- [x] 10×20 board centered on screen
+- [x] All 7 standard Tetris pieces with their colors
+- [x] Piece movement and rotation
+- [x] Cell structure with mine fields and adjacent mine count
+- [x] Basic screens: Logo → Title → Gameplay → Ending
 
-Lo que falta (work in progress):
+Still missing (work in progress):
 
-- [ ] Colisión de piezas con el suelo y entre piezas
-- [ ] Caída automática por gravedad
-- [ ] Asignación de minas al generar cada pieza
-- [ ] Actualización de números adyacentes al aterrizar
-- [ ] Lógica de desbloqueo de casillas y eliminación de líneas
-- [ ] Sistema de puntuación
-- [ ] Pantalla siguiente pieza / pieza en espera
-- [ ] Niveles y progresión
+- [ ] Collision detection with the floor and other pieces
+- [ ] Automatic gravity drop
+- [ ] Mine assignment when generating each piece
+- [ ] Adjacent number update on landing
+- [ ] Cell unlock logic and line clearing
+- [ ] Scoring system
+- [ ] Next piece / hold piece display
+- [ ] Levels and progression
 - [ ] Menus
-- [ ] Interfaz
-- [ ] ArtWork (assets)
+- [ ] UI
+- [ ] Artwork (assets)
 
 ---
 
-##  Compilación
+## Building
 
-### Requisitos
+### Requirements
 
-- [raylib](https://www.raylib.com/) (probado con raylib 4.x o superior)
-- Compilador C compatible con C99 o superior (`gcc` en Linux, MinGW en Windows)
-- [Code::Blocks](https://www.codeblocks.org/) con el compilador configurado
+- [raylib](https://www.raylib.com/) (tested with raylib 4.x or higher)
+- C99-compatible compiler or later (`gcc` on Linux, MinGW on Windows)
+- [Code::Blocks](https://www.codeblocks.org/) with a compiler configured
 
 ### Windows (Code::Blocks)
 
-1. Clona o descarga el repositorio.
-2. Abre el archivo `.cbp` con Code::Blocks.
-3. Asegúrate de que la ruta a raylib está configurada correctamente en las opciones del proyecto:
-   - **Build Options → Search directories**: ruta a `raylib/include`
+1. Clone or download the repository.
+2. Open the `.cbp` file with Code::Blocks.
+3. Make sure the raylib path is correctly set in the project options:
+   - **Build Options → Search directories**: path to `raylib/include`
    - **Build Options → Linker settings**: `raylib`, `opengl32`, `gdi32`, `winmm`
-4. Compila y ejecuta con `F9`.
+4. Build and run with `F9`.
 
-### Linux (línea de comandos)
+### Linux (command line)
 
 ```bash
 gcc main.c escenario.c pieza.c -o tetris_mines \
@@ -67,39 +69,39 @@ gcc main.c escenario.c pieza.c -o tetris_mines \
 ./tetris_mines
 ```
 
-> En algunas distribuciones puede ser necesario instalar raylib desde los repositorios o compilarla desde fuente: https://github.com/raysan5/raylib
+> On some distributions you may need to install raylib from your package manager or build it from source: https://github.com/raysan5/raylib
 
 ---
 
-## Estructura del proyecto
+## Project Structure
 
 ```
 TetrisMinesSweeper/
-├── main.c          # Bucle principal y gestión de pantallas
-├── escenario.h     # Definición del tablero, celdas y constantes
-├── escenario.c     # Inicialización y dibujado del tablero
-├── pieza.h         # Definición de piezas y bloques
-├── pieza.c         # Lógica de piezas: init, movimiento, rotación
+├── main.c          # Main loop and screen management
+├── escenario.h     # Board, cell definitions and constants
+├── escenario.c     # Board initialization and rendering
+├── pieza.h         # Piece and block definitions
+├── pieza.c         # Piece logic: init, movement, rotation
 └── README.md
 ```
 
 ---
 
-## Constantes principales
+## Key Constants
 
-| Constante | Valor | Descripción |
+| Constant | Value | Description |
 |---|---|---|
-| `COLUMNAS` | 10 | Ancho del tablero en celdas |
-| `FILAS` | 20 | Alto del tablero en celdas |
-| `CELDA_SIZE` | 40px | Tamaño en píxeles de cada celda |
-| `PIEZA_BLOQUES` | 4 | Bloques por pieza |
-| `PIEZA_TIPOS` | 7 | Número de tipos de pieza (I O T S Z J L) |
+| `COLUMNAS` | 10 | Board width in cells |
+| `FILAS` | 20 | Board height in cells |
+| `CELDA_SIZE` | 40px | Pixel size of each cell |
+| `PIEZA_BLOQUES` | 4 | Blocks per piece |
+| `PIEZA_TIPOS` | 7 | Number of piece types (I O T S Z J L) |
 
 ---
 
-## Licencia
+## License
 
-Este proyecto está bajo la licencia **MIT**. Puedes usarlo, modificarlo y distribuirlo libremente siempre que mantengas el aviso de copyright original.
+This project is licensed under the **MIT License**. You are free to use, modify and distribute it as long as you keep the original copyright notice.
 
 ```
 MIT License — Copyright (c) 2026 Tuken
@@ -107,8 +109,8 @@ MIT License — Copyright (c) 2026 Tuken
 
 ---
 
-## Créditos
+## Credits
 
-- Construido con [raylib](https://www.raylib.com/) de Ramon Santamaria [@raysan5](https://x.com/raysan5?lang=es)
-- Inspirado en Tetris y Minesweeper
-- La idea original se inspiro en [Itchi.io](https://kertisjones.itch.io/tetrisweeper) del usuario Kertis Jones [@KertisJones](https://x.com/KertisJones) Quien Hizo esta fusion antes que yo
+- Built with [raylib](https://www.raylib.com/) by Ramon Santamaria [@raysan5](https://x.com/raysan5)
+- Inspired by Tetris and Minesweeper
+- The original concept was inspired by [Itch.io](https://kertisjones.itch.io/tetrisweeper) user Kertis Jones [@KertisJones](https://x.com/KertisJones), who made this fusion before me
