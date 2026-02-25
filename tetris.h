@@ -12,6 +12,6 @@ bool PuedeRotar(const Pieza* p);
 
 void BloquearPieza(Pieza* p);
 
-void ActualizarJuego(Pieza* p);
+void ActualizarJuego(Pieza* p, float delta);
 
 #endif // TETRIS_H_INCLUDED

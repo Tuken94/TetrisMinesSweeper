@@ -1,8 +1,11 @@
 #include "tetris.h"
 
-static int frameGravedad = 0;
+#define GRAVEDAD_INTERVALO  1.0f    // segundos entre bajadas autom ticas
+#define SOFTDROP_INTERVALO  0.05f   // segundos entre bajadas con S/DOWN mantenido
 
-// Comprueba si la pieza puede moverse (dx, dy) sin salir del tablero ni chocar
+static float tiempoGravedad = 0.0f;
+static float tiempoSoftDrop = 0.0f;
+
 bool PuedeMoverse(const Pieza* p, int dx, int dy){
     for (int i = 0; i < PIEZA_BLOQUES; i++){
         int nx = p->posX + p->bloques[i].x + dx;
@@ -12,9 +15,7 @@ bool PuedeMoverse(const Pieza* p, int dx, int dy){
     return true;
 }
 
-// Comprueba si la pieza puede rotar calculando los bloques rotados
 bool PuedeRotar(const Pieza* p){
-    // Replicamos la l¢gica de RotarPieza para obtener las posiciones resultantes
     int minX = p->bloques[0].x, minY = p->bloques[0].y;
     int maxX = p->bloques[0].x, maxY = p->bloques[0].y;
     for (int i = 1; i < PIEZA_BLOQUES; i++){
@@ -34,30 +35,43 @@ bool PuedeRotar(const Pieza* p){
     return true;
 }
 
-// Escribe la pieza en el tablero y genera una nueva
 void BloquearPieza(Pieza* p){
     for (int i = 0; i < PIEZA_BLOQUES; i++){
         int x = p->posX + p->bloques[i].x;
         int y = p->posY + p->bloques[i].y;
         BloquearCelda(x, y, p->color);
     }
-    frameGravedad = 0;
+    tiempoGravedad = 0.0f;
+    tiempoSoftDrop = 0.0f;
     InitPieza(p);
 }
 
-// Input + gravedad + bloqueo autom tico
-void ActualizarJuego(Pieza* p){
+void ActualizarJuego(Pieza* p, float delta){
+
     // Movimiento lateral
-    if (IsKeyPressed(KEY_LEFT)  || IsKeyPressed(KEY_A)){
+    if (IsKeyDown(KEY_LEFT)  || IsKeyDown(KEY_A)){
         if (PuedeMoverse(p, -1, 0)) MoverPieza(p, -1, 0);
     }
-    if (IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D)){
+    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)){
         if (PuedeMoverse(p,  1, 0)) MoverPieza(p,  1, 0);
     }
 
-    // Bajada r pida
-    if (IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_S)){
-        if (PuedeMoverse(p, 0, 1)) MoverPieza(p, 0, 1);
+    // Bajada instant nea (hard drop)
+    if (IsKeyPressed(KEY_SPACE)){
+        while (PuedeMoverse(p, 0, 1)) MoverPieza(p, 0, 1);
+        BloquearPieza(p);
+        return;   // saltamos gravedad este frame
+    }
+
+    // Soft drop (manteniendo S/DOWN)
+    if (IsKeyDown(KEY_DOWN) || IsKeyDown(KEY_S)){
+        tiempoSoftDrop += delta;
+        if (tiempoSoftDrop >= SOFTDROP_INTERVALO){
+            tiempoSoftDrop = 0.0f;
+            if (PuedeMoverse(p, 0, 1)) MoverPieza(p, 0, 1);
+        }
+    } else {
+        tiempoSoftDrop = 0.0f;
     }
 
     // Rotaci¢n
@@ -66,9 +80,9 @@ void ActualizarJuego(Pieza* p){
     }
 
     // Gravedad autom tica
-    frameGravedad++;
-    if (frameGravedad >= GRAVEDAD_FRAMES){
-        frameGravedad = 0;
+    tiempoGravedad += delta;
+    if (tiempoGravedad >= GRAVEDAD_INTERVALO){
+        tiempoGravedad = 0.0f;
         if (PuedeMoverse(p, 0, 1)){
             MoverPieza(p, 0, 1);
         } else {

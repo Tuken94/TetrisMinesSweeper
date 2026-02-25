@@ -50,6 +50,7 @@ int main(void)
     int framesCounter = 0;          // Useful to count frames
 
     SetTargetFPS(60);               // Set desired framerate (frames-per-second)
+    float delta;
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -85,7 +86,8 @@ int main(void)
             {
                 // TODO: Update GAMEPLAY screen variables here!
                 // Press enter to change to ENDING screen
-                ActualizarJuego(&pieza);
+                delta=GetFrameTime();
+                ActualizarJuego(&pieza,delta);
                 if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
                 {
                     currentScreen = ENDING;

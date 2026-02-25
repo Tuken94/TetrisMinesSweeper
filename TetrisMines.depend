@@ -18,23 +18,24 @@
 	<stdio.h>
 	<stdlib.h>
 
-1771850987 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\main.c
+1771920845 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\main.c
 	"raylib.h"
 	"escenario.h"
 	"pieza.h"
+	"tetris.h"
 
 1771851008 c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\pieza.h
 	"raylib.h"
 	"escenario.h"
 	<time.h>
 
-1771851080 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\pieza.c
+1771855030 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\pieza.c
 	"pieza.h"
 
-1771854818 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\tetris.c
+1771923435 source:c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\tetris.c
 	"tetris.h"
 
-1771854842 c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\tetris.h
+1771920818 c:\users\jaime\onedrive\documentos\escola\programación\tetrisminessweeper\tetris.h
 	"pieza.h"
 	"escenario.h"
 
