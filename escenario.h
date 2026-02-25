@@ -6,9 +6,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define COLUMNAS 10
-#define FILAS 20
-#define CELDA_SIZE 40
+#define COLUMNAS       10
+#define FILAS          20
+#define CELDA_SIZE     40
+#define PREVIEW_SIZE   20
+#define PREVIEW_MARGIN 10
+#define NUM_SIGUIENTES  4
 
 typedef enum {
     CELDA_VACIA=0,

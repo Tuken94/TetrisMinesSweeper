@@ -1,4 +1,4 @@
-#include  "escenario.h"
+#include "escenario.h"
 #include <stdio.h>
 
 /*const char* FONDO="Textures/Background.png";
@@ -10,9 +10,8 @@ static Texture2D borde;
 static Texture2D patron;*/
 
 static Celda tablero[FILAS][COLUMNAS];
-static int tableroX=0;
-static int tableroY=0;
-
+static int tableroX = 0;
+static int tableroY = 0;
 
 /*void LoadearTexturas(){
     fondo = LoadTexture(FONDO);
@@ -26,20 +25,39 @@ void InitTablero(){
 
     for (int i = 0; i < FILAS; i++){
         for (int j = 0; j < COLUMNAS; j++){
-            tablero[i][j].estado=CELDA_VACIA;
-            tablero[i][j].tiene_mina=false;
-            tablero[i][j].minas_adyacentes=0;
-            tablero[i][j].color=BLACK;
+            tablero[i][j].estado           = CELDA_VACIA;
+            tablero[i][j].tiene_mina       = false;
+            tablero[i][j].minas_adyacentes = 0;
+            tablero[i][j].color            = BLACK;
         }
     }
 }
 
 void DibujarTablero(){
-    //Vector2 centro = {GetScreenWidth()/2 - fondo.width/1.35, GetScreenHeight()/2 - fondo.width*1.35};
-    //Vector2 centro2 = {GetScreenWidth()/2, GetScreenHeight()/2};
-    //Vector2 cero = {0, 0};
+    /*Vector2 centro = {GetScreenWidth()/2 - fondo.width/1.35, GetScreenHeight()/2 - fondo.width*1.35};
+    Vector2 centro2 = {GetScreenWidth()/2, GetScreenHeight()/2};
+    Vector2 cero = {0, 0};*/
 
     DrawRectangle(tableroX, tableroY, COLUMNAS * CELDA_SIZE, FILAS * CELDA_SIZE, BLACK);
+
+    // Panel de siguientes a la derecha del tablero
+    int panelX     = tableroX + COLUMNAS * CELDA_SIZE + 20;
+    int panelAncho  = 4 * PREVIEW_SIZE + PREVIEW_MARGIN * 2;
+    int cajaAlto    = 4 * PREVIEW_SIZE + PREVIEW_MARGIN * 2;
+    int panelAlto   = NUM_SIGUIENTES * (cajaAlto + PREVIEW_MARGIN) - PREVIEW_MARGIN;
+    DrawRectangle(panelX, tableroY, panelAncho, panelAlto, (Color){30, 30, 30, 255});
+    DrawRectangleLinesEx(
+        (Rectangle){(float)panelX, (float)tableroY, (float)panelAncho, (float)panelAlto},
+        2, (Color){80, 80, 80, 255});
+
+    // Panel de guardada a la izquierda del tablero
+    int panelAncho2 = 4 * PREVIEW_SIZE + PREVIEW_MARGIN * 2;
+    int panelAlto2  = 4 * PREVIEW_SIZE + PREVIEW_MARGIN * 2;
+    int panelX2     = tableroX - panelAncho2 - 20;
+    DrawRectangle(panelX2, tableroY, panelAncho2, panelAlto2, (Color){30, 30, 30, 255});
+    DrawRectangleLinesEx(
+        (Rectangle){(float)panelX2, (float)tableroY, (float)panelAncho2, (float)panelAlto2},
+        2, (Color){80, 80, 80, 255});
 
     for (int i = 0; i < FILAS; i++){
         for (int j = 0; j < COLUMNAS; j++){
@@ -55,23 +73,22 @@ void DibujarTablero(){
                     char buf[3];
                     snprintf(buf, sizeof(buf), "%d", c->minas_adyacentes);
                     int fs = CELDA_SIZE / 2;
-                    DrawText(buf,px + (CELDA_SIZE - MeasureText(buf, fs)) / 2,py + (CELDA_SIZE - fs) / 2,fs, WHITE);
+                    DrawText(buf,
+                             px + (CELDA_SIZE - MeasureText(buf, fs)) / 2,
+                             py + (CELDA_SIZE - fs) / 2,
+                             fs, WHITE);
                 }
             }
 
             DrawRectangleLinesEx(
-                (Rectangle){(float)px, (float)py, CELDA_SIZE, CELDA_SIZE},1, (Color){80, 80, 80, 255});
+                (Rectangle){(float)px, (float)py, CELDA_SIZE, CELDA_SIZE},
+                1, (Color){80, 80, 80, 255});
         }
     }
 }
 
-int GetTableroX(){
-    return tableroX;
-}
-
-int GetTableroY(){
-    return tableroY;
-}
+int GetTableroX(){ return tableroX; }
+int GetTableroY(){ return tableroY; }
 
 // Devuelve true si (x,y) est  dentro del tablero y la celda est  vac¡a
 bool EsCeldaLibre(int x, int y){
@@ -89,5 +106,4 @@ void BloquearCelda(int x, int y, Color color){
     UnloadTexture(fondo);
     UnloadTexture(borde);
     UnloadTexture(patron);
-}
-*/
+}*/

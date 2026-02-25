@@ -1,10 +1,29 @@
 #include "tetris.h"
 
-#define GRAVEDAD_INTERVALO  1.0f    // segundos entre bajadas autom ticas
-#define SOFTDROP_INTERVALO  0.05f   // segundos entre bajadas con S/DOWN mantenido
+#define GRAVEDAD_INTERVALO  1.0f
+#define SOFTDROP_INTERVALO  0.05f
+#define LATERAL_INTERVALO   0.08f
 
 static float tiempoGravedad = 0.0f;
 static float tiempoSoftDrop = 0.0f;
+static float tiempoLateral  = 0.0f;
+static int   tipoGuardado   = -1;   // -1 = vac¡o
+
+void GuardarPieza(Pieza* p){
+    int tipoActual = GetTipoPieza(p);
+    if (tipoGuardado == -1){
+        // No hay pieza guardada: guardar y pasar a la siguiente
+        tipoGuardado = tipoActual;
+        InitPieza(p);
+    } else {
+        // Hay pieza guardada: intercambiar
+        int tmp = tipoGuardado;
+        tipoGuardado = tipoActual;
+        InitPiezaTipo(p, tmp);
+    }
+}
+
+int GetTipoGuardado(){ return tipoGuardado; }
 
 bool PuedeMoverse(const Pieza* p, int dx, int dy){
     for (int i = 0; i < PIEZA_BLOQUES; i++){
@@ -43,24 +62,40 @@ void BloquearPieza(Pieza* p){
     }
     tiempoGravedad = 0.0f;
     tiempoSoftDrop = 0.0f;
+    tiempoLateral  = 0.0f;
     InitPieza(p);
 }
 
 void ActualizarJuego(Pieza* p, float delta){
 
-    // Movimiento lateral
-    if (IsKeyDown(KEY_LEFT)  || IsKeyDown(KEY_A)){
-        if (PuedeMoverse(p, -1, 0)) MoverPieza(p, -1, 0);
+    // Guardar pieza
+    if (IsKeyPressed(KEY_LEFT_SHIFT) || IsKeyPressed(KEY_RIGHT_SHIFT)){
+        GuardarPieza(p);
+        return;
     }
-    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)){
-        if (PuedeMoverse(p,  1, 0)) MoverPieza(p,  1, 0);
+
+    // Movimiento lateral
+    if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)){
+        tiempoLateral += delta;
+        if (IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_A) || tiempoLateral >= LATERAL_INTERVALO){
+            tiempoLateral = 0.0f;
+            if (PuedeMoverse(p, -1, 0)) MoverPieza(p, -1, 0);
+        }
+    } else if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)){
+        tiempoLateral += delta;
+        if (IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D) || tiempoLateral >= LATERAL_INTERVALO){
+            tiempoLateral = 0.0f;
+            if (PuedeMoverse(p,  1, 0)) MoverPieza(p,  1, 0);
+        }
+    } else {
+        tiempoLateral = 0.0f;
     }
 
     // Bajada instant nea (hard drop)
     if (IsKeyPressed(KEY_SPACE)){
         while (PuedeMoverse(p, 0, 1)) MoverPieza(p, 0, 1);
         BloquearPieza(p);
-        return;   // saltamos gravedad este frame
+        return;
     }
 
     // Soft drop (manteniendo S/DOWN)
@@ -75,7 +110,12 @@ void ActualizarJuego(Pieza* p, float delta){
     }
 
     // Rotaci¢n
-    if (IsKeyPressed(KEY_Q)){
+    if (IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP)){
+        int cont = 0;
+        while (!PuedeRotar(p) && cont < 3){
+            MoverPieza(p, -1, 0);
+            cont++;
+        }
         if (PuedeRotar(p)) RotarPieza(p);
     }
 

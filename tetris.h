@@ -4,14 +4,11 @@
 #include "pieza.h"
 #include "escenario.h"
 
-#define GRAVEDAD_FRAMES 60   // frames entre cada bajada autom tica (1 segundo a 60fps)
-
+int  GetTipoGuardado();
 bool PuedeMoverse(const Pieza* p, int dx, int dy);
-
-bool PuedeRotar(const Pieza* p);
-
+bool IntentarRotar(Pieza* p);
+void GuardarPieza(Pieza* p);
 void BloquearPieza(Pieza* p);
-
-void ActualizarJuego(Pieza* p, float delta);
+void ActualizarJuego(Pieza* p, float dt);
 
 #endif // TETRIS_H_INCLUDED

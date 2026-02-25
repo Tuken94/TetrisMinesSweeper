@@ -77,7 +77,7 @@ int main(void)
                 // TODO: Update TITLE screen variables here!
 
                 // Press enter to change to GAMEPLAY screen
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                if (IsKeyPressed(KEY_ENTER))
                 {
                     currentScreen = GAMEPLAY;
                 }
@@ -88,7 +88,7 @@ int main(void)
                 // Press enter to change to ENDING screen
                 delta=GetFrameTime();
                 ActualizarJuego(&pieza,delta);
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                if (IsKeyPressed(KEY_ENTER))
                 {
                     currentScreen = ENDING;
                 }
@@ -98,7 +98,7 @@ int main(void)
                 // TODO: Update ENDING screen variables here!
 
                 // Press enter to return to TITLE screen
-                if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+                if (IsKeyPressed(KEY_ENTER))
                 {
                     currentScreen = TITLE;
                 }
@@ -136,6 +136,8 @@ int main(void)
                     //DrawTexture(fondo, GetScreenWidth()/2 - fondo.width/2, GetScreenHeight()/2 - fondo.width/2, WHITE);
                     DibujarTablero();
                     DibujarPieza(&pieza);
+                    DibujarSiguientes();
+                    DibujarGuardada();
 
                 } break;
                 case ENDING:
