@@ -27,11 +27,11 @@ O ponto central do jogo é que **uma linha não é eliminada apenas por ser pree
 - [x] Movimentação e rotação de peças
 - [x] Estrutura de células com campos de mina e contagem de minas adjacentes
 - [x] Telas básicas: Logo → Título → Jogo → Final
+- [x] Detecção de colisão com o chão e entre peças
+- [x] Queda automática por gravidade
 
 O que ainda falta (work in progress):
 
-- [ ] Detecção de colisão com o chão e entre peças
-- [ ] Queda automática por gravidade
 - [ ] Atribuição de minas ao gerar cada peça
 - [ ] Atualização dos números adjacentes ao pousar
 - [ ] Lógica de desbloqueio de casas e eliminação de linhas
