@@ -27,11 +27,11 @@ La clave del juego es que **una línea no se elimina simplemente llenándola**. 
 - [x] Movimiento y rotación de piezas
 - [x] Estructura de celdas con campos de mina y número de adyacentes
 - [x] Pantallas básicas: Logo → Título → Juego → Final
+- [x] Colisión de piezas con el suelo y entre piezas
+- [x] Caída automática por gravedad
 
 Lo que falta (work in progress):
 
-- [ ] Colisión de piezas con el suelo y entre piezas
-- [ ] Caída automática por gravedad
 - [ ] Asignación de minas al generar cada pieza
 - [ ] Actualización de números adyacentes al aterrizar
 - [ ] Lógica de desbloqueo de casillas y eliminación de líneas
