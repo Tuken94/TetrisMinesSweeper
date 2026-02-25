@@ -27,11 +27,11 @@ The key mechanic is that **a line is not cleared just by filling it**. You must 
 - [x] Piece movement and rotation
 - [x] Cell structure with mine fields and adjacent mine count
 - [x] Basic screens: Logo → Title → Gameplay → Ending
+- [x] Collision detection with the floor and other pieces
+- [x] Automatic gravity drop
 
 Still missing (work in progress):
 
-- [ ] Collision detection with the floor and other pieces
-- [ ] Automatic gravity drop
 - [ ] Mine assignment when generating each piece
 - [ ] Adjacent number update on landing
 - [ ] Cell unlock logic and line clearing
